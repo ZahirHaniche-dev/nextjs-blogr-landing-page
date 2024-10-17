@@ -5,7 +5,7 @@ function SignupPage() {
   return (
     <div className="container mt-5 mb-5">
         <div className="row">
-            <SignupForm />   
+            {/* <SignupForm /> */}
         </div>
     </div>
   );
