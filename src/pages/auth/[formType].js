@@ -23,7 +23,8 @@ export default function AuthForm() {
     if (isLogin) {
       router.push("/auth/registration");
     } else {
-      router.push("/auth/connexion");
+      // router.push("/auth/connexion");
+      router.push("/auth/registration");
     }
     // Pas besoin de modifier isLogin manuellement ici, car il sera mis à jour via useEffect en fonction de l'URL
   }
@@ -48,7 +49,7 @@ export default function AuthForm() {
         <div className="row">
           {/* Bloc de texte centré verticalement */}
           <div className="col-md-4 col-sm-4 col-xs-12 mb-4 mt-4 d-flex flex-column justify-content-center">
-            {isLogin ? (
+            {!isLogin ? (
               <div className="container text-center">
                 <h3>Connectez-vous</h3>
                 <p>

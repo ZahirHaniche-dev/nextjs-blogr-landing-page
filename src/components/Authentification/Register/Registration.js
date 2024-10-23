@@ -6,12 +6,12 @@ import RegisterInformation from "../../../components/Authentification/Register/I
 import RegisterPassword from "../../../components/Authentification/Register/Password";
 
 export default function Registration() {
-  const methods = useForm();
+  const methods = useForm( { mode: "onChange" });
   const {
     handleSubmit,
     setError,
     clearErrors,
-    formState: { errors },
+    formState: { errors, isValid }
   } = methods;
 
   const [step, setStep] = useState(1);
@@ -90,7 +90,8 @@ export default function Registration() {
   return (
     <>
       <FormProvider {...methods}>
-        <form id="auth-form" onSubmit={handleSubmit(onSubmit)}>
+        {/* <form id="auth-form" onSubmit={handleSubmit(onSubmit)}> */}
+        <form id="auth-form" > 
           {step === 1 && (
             <>
               <RegisterInformation onNext={handleNextStep} />
@@ -100,6 +101,7 @@ export default function Registration() {
                   label="Suivant"
                   mode="secondary"
                   action={methods.handleSubmit(handleNextStep)}
+                  disabled={!isValid}
                 />
               </div>
             </>
