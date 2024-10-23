@@ -1,8 +1,11 @@
 import Head from "next/head";
-import FeatureFuture from "../components/Home/FeatureFuture";
-import FeatureExtras from "../components/Home/FeatureExtras";
-import FeatureInfrastructure from "../components/Home/FeatureInfrastructure";
+import MainHome from "../components/Home/MainHome";
 
+let logger;
+if (typeof window === 'undefined') {
+  // Nous sommes dans un environnement côté serveur
+  logger = require('../config/winston');
+}
 
 export default function Home() {
   return (
@@ -12,16 +15,21 @@ export default function Home() {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>NSK Site - NextJS</title>
         </Head>
-        <section className="row align-items-center my-5">
-          <FeatureFuture />
-        </section>
-        <section className="state-art-section rounded-corners circle-image-background">
-          <FeatureInfrastructure />
-        </section>
-        <section className="row align-items-center my-5">
-          <FeatureExtras />
-        </section>
+        <MainHome />
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  // Vérifiez si le logger est défini (cela signifie que nous sommes côté serveur)
+  if (logger) {
+    logger.info("Page d'accueil rendue avec succès - Niveau Info");
+    logger.error("Une erreur fictive est survenue - Niveau Error");
+    logger.debug("Debugging les données du serveur - Niveau Debug");
+  }
+
+  return {
+    props: {}, // Possible de passer des props ici si nécessaire
+  };
 }

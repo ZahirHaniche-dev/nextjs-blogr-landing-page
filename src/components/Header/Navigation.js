@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from './css/Navigation.module.css';
 import { mainMenus } from '../../data/main-menus'
-import Buttons from '../Interface/Buttons';
+import ButtonLink from '../Interface/ButtonLink';
 
 function Navigation() {
     const [openDropdown, setOpenDropdown] = useState(null);
@@ -38,8 +38,8 @@ function Navigation() {
                         {menu.groupTitle}
                         <span className={`${styles.arrowIcon} ${openDropdown === menu.groupTitle ? styles.open : ''}`}>
                         <picture>
-                            <source srcSet="images/icon-arrow-light.svg" media="(min-width:50rem)" />
-                            <img src="images/icon-arrow-dark.svg" alt="Arrow Icon" />
+                            <source srcSet="/images/icon-arrow-light.svg" media="(min-width:50rem)" />
+                            <img src="/images/icon-arrow-dark.svg" alt="Arrow Icon" />
                         </picture>
                         </span>
                     </button>
@@ -58,8 +58,8 @@ function Navigation() {
                 </div>
             ))}
             <div className="d-flex d-lg-none d-xl-none d-xxl-none justify-content-center gap-2">
-                <Buttons label="Connexion" mode="secondary" href="/connection" />
-                <Buttons label="Inscription" mode={typeof window !== 'undefined' && window.innerWidth < 768 ? 'secondary' : 'primary'} href="/signup" />
+                <ButtonLink label="Connexion" mode="primary" href="/auth/connexion" />
+                {/* <ButtonLink label="registration" mode={typeof window !== 'undefined' && window.innerWidth < 768 ? 'secondary' : 'primary'} href="/auth/registration" /> */}
             </div> 
         </nav>
     );
