@@ -55,7 +55,7 @@ export default function Registration() {
     console.log(finalData);
     console.log("Formatted Birth Date: ", formattedBirthDate);
 
-    try {
+    /* try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ export default function Registration() {
     } catch (error) {
       console.error("Error during registration:", error);
       setError("global", { message: "Internal Server Error" });
-    }
+    }*/
   };
 
   return (
