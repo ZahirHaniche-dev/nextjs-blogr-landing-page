@@ -55,42 +55,43 @@ export default function Registration() {
     console.log(finalData);
     console.log("Formatted Birth Date: ", formattedBirthDate);
 
-    // try {
-    //   const response = await fetch("/api/auth/register", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(finalData),
-    //   });
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(finalData),
+      });
 
-    //   const isValidResponse = await ReponseError(response, setError);
-    //   if (!isValidResponse) {
-    //     const errorData = await response.json();
-    //     // Utilisation correcte de Object.keys pour itérer sur les erreurs
-    //     Object.keys(errorData.errors).forEach((key) => {
-    //       setError(key, { type: "manual", message: errorData.errors[key] });
-    //     });
-    //     // Cette ligne affiche l'erreur globale, si elle existe
-    //     setError("global", {
-    //       message: errorData.error || "Une erreur s'est produite",
-    //     });
-    //     return;
-    //   }
+      const isValidResponse = await ReponseError(response, setError);
+      if (!isValidResponse) {
+        const errorData = await response.json();
+        // Utilisation correcte de Object.keys pour itérer sur les erreurs
+        Object.keys(errorData.errors).forEach((key) => {
+          setError(key, { type: "manual", message: errorData.errors[key] });
+        });
+        // Cette ligne affiche l'erreur globale, si elle existe
+        setError("global", {
+          message: errorData.error || "Une erreur s'est produite",
+        });
+        return;
+      }
 
-    //   const responseData = await response.json();
-    //   console.log("User registered successfully:", responseData);
-    //   window.location.href = "/auth/connexion";
-    // } catch (error) {
-    //   console.error("Error during registration:", error);
-    //   setError("global", { message: "Internal Server Error" });
-    // }
+      const responseData = await response.json();
+      console.log("User registered successfully:", responseData);
+      window.location.href = "/auth/connexion";
+    } catch (error) {
+      console.error("Error during registration:", error);
+      setError("global", { message: "Internal Server Error" });
+    }
   };
 
   return (
     <>
       <FormProvider {...methods}>
-        <form id="auth-form" onSubmit={handleSubmit(onSubmit)}>
+        {/* <form id="auth-form" onSubmit={handleSubmit(onSubmit)}> */}
+        <form id="auth-form" > 
           {step === 1 && (
             <>
               <RegisterInformation onNext={handleNextStep} />
