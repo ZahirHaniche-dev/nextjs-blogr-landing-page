@@ -7,13 +7,11 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ErrorBoundary>
       <Container>
         <RootLayout>
           <Component {...pageProps} />
         </RootLayout>
       </Container>
-    </ErrorBoundary>
   );
 }
 
