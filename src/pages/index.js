@@ -22,14 +22,21 @@ export default function Home() {
 }
 
 export async function getServerSideProps() {
-  // Vérifiez si le logger est défini (cela signifie que nous sommes côté serveur)
-  if (logger) {
-    logger.info("Page d'accueil rendue avec succès - Niveau Info");
-    logger.error("Une erreur fictive est survenue - Niveau Error");
-    logger.debug("Debugging les données du serveur - Niveau Debug");
-  }
+  try {
+    if (logger) {
+      logger.info("Page d'accueil rendue avec succès - Niveau Info");
+      logger.error("Une erreur fictive est survenue - Niveau Error");
+      logger.debug("Debugging les données du serveur - Niveau Debug");
+    }
 
-  return {
-    props: {}, // Possible de passer des props ici si nécessaire
-  };
+    return {
+      props: {},
+    };
+  } catch (error) {
+    console.error("Erreur dans getServerSideProps :", error);
+    return {
+      notFound: true, // ou tu peux rendre une page d'erreur personnalisée
+    };
+  }
 }
+
