@@ -23,11 +23,11 @@ export default function Home() {
 
 export async function getServerSideProps() {
   try {
-    if (logger) {
-      logger.info("Page d'accueil rendue avec succès - Niveau Info");
-      logger.error("Une erreur fictive est survenue - Niveau Error");
-      logger.debug("Debugging les données du serveur - Niveau Debug");
-    }
+    // if (logger) {
+    //   logger.info("Page d'accueil rendue avec succès - Niveau Info");
+    //   logger.error("Une erreur fictive est survenue - Niveau Error");
+    //   logger.debug("Debugging les données du serveur - Niveau Debug");
+    // }
 
     return {
       props: {},
