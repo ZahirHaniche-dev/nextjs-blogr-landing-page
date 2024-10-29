@@ -1,4 +1,4 @@
-# Reponsive Blogr landing page
+# Reponsive Blogr Landing Page
 
 
 ## Welcome! 👋
