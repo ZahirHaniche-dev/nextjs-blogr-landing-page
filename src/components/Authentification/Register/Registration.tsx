@@ -14,6 +14,7 @@ interface FormData {
   birthDate?: string;
   phone?: string;
   gender?: string;
+  global?: string; 
 }
 
 export default function Registration(): JSX.Element {
@@ -35,7 +36,7 @@ export default function Registration(): JSX.Element {
         type: "manual",
         message: "Cet email est déjà utilisé.",
       });
-      return; // Empêche de passer à l'étape suivante
+      return;
     }
 
     setRecap((prev) => ({ ...prev, ...data }));
@@ -46,7 +47,7 @@ export default function Registration(): JSX.Element {
     setStep(step - 1);
   };
 
-  const checkEmailExists = async (email) => {
+  const checkEmailExists = async (email: string) => { // Typage explicite de `email`
     if (!email) return;
 
     try {
@@ -62,13 +63,12 @@ export default function Registration(): JSX.Element {
         const errorData = await response.json();
         setError("email", {
           type: "manual",
-          message:
-            errorData.error || "Erreur lors de la vérification de l'email",
+          message: errorData.error || "Erreur lors de la vérification de l'email",
         });
-        setIsEmailAvailable(false); // L'email existe déjà
+        setIsEmailAvailable(false);
       } else {
         clearErrors("email");
-        setIsEmailAvailable(true); // L'email est disponible
+        setIsEmailAvailable(true);
       }
     } catch (error) {
       setError("email", {
@@ -94,7 +94,7 @@ export default function Registration(): JSX.Element {
       if (isNaN(birthDate.getTime())) {
         throw new Error("Invalid date");
       }
-      formattedBirthDate = birthDate.toISOString().split("T")[0]; // Formate la date en YYYY-MM-DD
+      formattedBirthDate = birthDate.toISOString().split("T")[0];
     } catch (error) {
       setError("birthDate", { type: "manual", message: "Invalid birth date" });
       return;
@@ -106,7 +106,6 @@ export default function Registration(): JSX.Element {
       birthDate: formattedBirthDate,
     };
     console.log(finalData);
-    console.log("Formatted Birth Date: ", formattedBirthDate);
 
     try {
       const response = await fetch("/api/auth/register", {
@@ -181,7 +180,9 @@ export default function Registration(): JSX.Element {
                   type="submit"
                   label="S'inscrire"
                   mode="secondary"
+                  action={() => {}} 
                 />
+
               </div>
             </>
           )}

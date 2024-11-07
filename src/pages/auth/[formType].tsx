@@ -10,11 +10,9 @@ export default function AuthForm(): JSX.Element {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const router = useRouter();
-  const { formType } = router.query;
+  const formType = router.query.formType as string || "connexion"; // Définissez une valeur par défaut
 
   const { t, isClient } = useClientTranslation('common'); // Utilisez le hook avec le namespace 'common'
-
-  
 
   // Synchroniser isLogin avec l'URL
   useEffect(() => {
@@ -29,7 +27,7 @@ export default function AuthForm(): JSX.Element {
     if (isLogin) {
       router.push("/auth/registration");
     } else {
-      router.push("");
+      router.push("/");
     }
   }
 

@@ -17,7 +17,7 @@ export default function RegisterInformation({ onCheckEmail }): JSX.Element {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (email) {
-        onCheckEmail(email);
+        //onCheckEmail(email);
       }
     }, 500); // délai de 500 ms pour éviter les requêtes excessives
 

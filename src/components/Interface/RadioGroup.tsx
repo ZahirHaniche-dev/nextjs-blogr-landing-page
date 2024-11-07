@@ -61,10 +61,10 @@ export default function RadioGroupUI({ label, name, options, icon }) {
 
           </div>
         
-          {/* Affichage des erreurs */}
-          {errors[name] && (
-            <span className="error text-danger">{errors[name].message}</span>
+          {errors[name]?.message && (
+            <span className="error text-danger">{errors[name].message as string}</span>
           )}
+
         </FormControl>
   );
 }
